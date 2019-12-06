@@ -18,7 +18,6 @@ impl Iterator for RandomArticles {
             .and_then(|mut resp| resp.text())
             .map(|text| json::parse(&text).unwrap())
             .map(|json| json["query"]["random"][0]
-                .clone()
                 .to_string()
             ).map(|json| serde_json::from_str(&json)
                 .unwrap()
@@ -63,7 +62,6 @@ where I: Iterator<Item=RandomArticle> {
                 .and_then(|mut resp| resp.text())
                 .map(|text| json::parse(&text).unwrap())
                 .map(|json| json["query"]["pages"][&id.to_string()]["fullurl"]
-                    .clone()
                     .to_string()
                 ).and_then(|url| CLIENT
                     .get(&url)
