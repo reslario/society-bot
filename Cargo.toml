@@ -13,4 +13,5 @@ select = "0.4.3"
 regex = "1.3.1"
 once_cell = "1.2.0"
 rust_twitter_bot_lib = "0.1.2"
+structopt = "0.3.8"
 
