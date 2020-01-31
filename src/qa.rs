@@ -1,5 +1,6 @@
 use once_cell::sync::Lazy;
 use regex::Regex;
+use std::iter::FromIterator;
 
 pub fn is_suitable(s: &&str) -> bool {
     let s = s.to_lowercase();
@@ -35,18 +36,16 @@ pub fn is_to_be(s: &str) -> bool {
         || is("were")
 }
 
-pub fn lowercase_first_char(mut s: String) -> String {
+pub fn lowercase_first_char(s: String) -> String {
     if !s.starts_with("I ") {
-        s.replace_range(
-            0..1,
-            &s.chars()
-                .next()
-                .unwrap()
-                .to_ascii_lowercase()
-                .to_string()
-        );
-    }
-    s
+        let mut chars = s.chars();
+        chars
+            .next()
+            .map(char::to_lowercase)
+            .map(String::from_iter)
+            .unwrap_or_default()
+            + chars.as_str()
+    } else { s }
 }
 
 pub fn remove_citations(s: String) -> String {
