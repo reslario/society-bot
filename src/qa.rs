@@ -72,3 +72,32 @@ pub fn not_common_junk(s: &&str) -> bool {
         .any(|junk| s.contains(junk))
         .not()
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_lowercase_first_char() {
+        assert_eq!(
+            lowercase_first_char("Test string".into()),
+            "test string"
+        );
+        assert_eq!(
+            lowercase_first_char("test string".into()),
+            "test string"
+        );
+        assert_eq!(
+            lowercase_first_char("I am a test string".into()),
+            "I am a test string"
+        )
+    }
+
+    #[test]
+    fn test_remove_citations() {
+        assert_eq!(
+            remove_citations("citation.[24][A]".into()),
+            "citation."
+        )
+    }
+}
