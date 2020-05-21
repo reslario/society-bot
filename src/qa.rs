@@ -67,7 +67,8 @@ pub fn not_common_junk(s: &&str) -> bool {
         "the following",
         "MIME type: image",
         "\n",
-        "logo is of a size and resolution sufficient"
+        "logo is of a size and resolution sufficient",
+        "the result was"
     ].iter()
         .any(|junk| s.contains(junk))
         .not()
